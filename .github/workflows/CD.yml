@@ -30,4 +30,5 @@ jobs:
       # Run the Docker container
       - name: Run Docker container
         run: |
+          IMAGE_NAME="ghcr.io/${{ github.repository_owner }}/myweb"
           docker run -d -p 8080:8080 $IMAGE_NAME:${{ env.VERSION }}
