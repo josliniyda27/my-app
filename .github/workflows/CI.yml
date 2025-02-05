@@ -1,8 +1,7 @@
 name: Continuous Integration
 on:
   pull_request:
-    branches: 
-      - main
+    branches: ["master"]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,7 +16,9 @@ jobs:
           java-version: '17'
 
       - name: Build Java application
-        run: mvn clean package
+        run: |
+          mvn clean package
+          ls target/
 
       - name: Extract Version from pom.xml
         run: echo "VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)" >> $GITHUB_ENV
